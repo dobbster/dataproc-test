@@ -37,7 +37,9 @@ pipeline {
         stage('Build JARs') {
             steps {
                 sh """
-                echo "Building spark jar files"
+                sudo jar -cvmf executablejarexample/*.mf \
+                executablejarexample/myjar.jar \
+                executablejarexample/*.class
                 """
             }
         }
