@@ -8,6 +8,11 @@ pipeline {
             )
     }
 
+    environment {
+        GOOGLE_BUCKET = "spark-codebases"
+        GOOGLE_PROJECT_ID = "broadcom-service-project2"
+    }
+
     stages {
         
         stage('Cleanup Workspace') {
@@ -23,39 +28,36 @@ pipeline {
             steps {
                 checkout([
                     $class: 'GitSCM', 
-                    branches: [[name: '*/master']], 
+                    branches: [[name: '*/*']], 
                     userRemoteConfigs: [[url: 'https://github.com/dobbster/dataproc-test.git']]
                 ])
             }
         }
 
-        stage(' Unit Testing') {
+        stage('Build JARs') {
             steps {
                 sh """
-                echo "Running Unit Tests"
+                echo "Building spark jar files"
                 """
             }
         }
 
-        stage('Code Analysis') {
+        stage('Send to GCS') {
             steps {
                 sh """
-                echo "Running Code Analysis"
+                echo "Sending to bucket 'spark-codebases"
                 """
             }
         }
 
-        stage('Build Deploy Code') {
-            when {
-                branch 'master'
-            }
+        stage('Execute terraform') {
             steps {
                 sh """
-                echo "Building Artifact"
+                echo "Executing terraform"
                 """
 
                 sh """
-                echo "Deploying Code"
+                echo "submitting job in dataproc"
                 """
             }
         }
