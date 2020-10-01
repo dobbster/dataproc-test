@@ -62,8 +62,10 @@ pipeline {
                 sh """
                 echo "Executing terraform"
                 """
+                withCredentials([file(credentialsId: 'broadcom-service-project2', variable: 'SA_CREDS')]) {
                 sh "sudo terraform init"
                 sh "sudo terraform apply -auto-approve -no-color"
+                }
                 sh """
                 echo "Job successfully "
                 """
