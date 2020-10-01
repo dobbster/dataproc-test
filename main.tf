@@ -1,5 +1,5 @@
 provider "google" {
-  project = "broadcom-service-project2"
+  project = "broadcom-sep-automation"
   region  = "us-west1"
   zone    = "us-west1-b"
 }
