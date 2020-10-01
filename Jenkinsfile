@@ -68,7 +68,7 @@ pipeline {
                 sh "sudo terraform apply -auto-approve -no-color"
                 //}
                 sh """
-                echo "Job successfully submitted to cluster"
+                echo "Job successfully submitted to dataproc cluster"
                 """
             }
         }
