@@ -9,8 +9,9 @@ pipeline {
     }
 
     environment {
-        GOOGLE_BUCKET = "spark-codebases"
-        GOOGLE_PROJECT_ID = "broadcom-service-project2"
+        CREDENTIALS_ID = "broadcom-service-project2"
+        BUCKET = "dataproc-artifactory"
+        PATTERN = "*"
     }
 
     stages {
@@ -47,8 +48,11 @@ pipeline {
         stage('Send to GCS') {
             steps {
                 sh """
-                echo "Sending to bucket 'spark-codebases"
+                echo "Sending to bucket '"
                 """
+                step([$class: 'ClassicUploadStep', credentialsId: env
+                        .CREDENTIALS_ID,  bucket: "gs://${env.BUCKET}",
+                      pattern: env.PATTERN])
             }
         }
 
