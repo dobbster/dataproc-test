@@ -62,12 +62,12 @@ pipeline {
                 sh """
                 echo "Executing terraform"
                 """
-                withCredentials([file(credentialsId: 'broadcom-service-project2', variable: 'SA_CREDS')]) {
+                withCredentials([file(credentialsId: 'broadcom-service-project2-sf', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                 sh "sudo terraform init"
                 sh "sudo terraform apply -auto-approve -no-color"
                 }
                 sh """
-                echo "Job successfully "
+                echo "Job successfully submitted to cluster"
                 """
             }
         }
