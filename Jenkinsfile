@@ -64,6 +64,7 @@ pipeline {
                 """
                 withCredentials([file(credentialsId: 'broadcom-service-project2-sf', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                 sh "sudo terraform init"
+                sh "gcloud auth list"
                 sh "sudo terraform apply -auto-approve -no-color"
                 }
                 sh """
