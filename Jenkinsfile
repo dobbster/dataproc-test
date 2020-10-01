@@ -11,7 +11,7 @@ pipeline {
     environment {
         CREDENTIALS_ID = "broadcom-service-project2"
         BUCKET = "dataproc-artifactory"
-        PATTERN = "*"
+        PATTERN = "**"
     }
 
     stages {
@@ -63,7 +63,7 @@ pipeline {
                 echo "Executing terraform"
                 """
                 sh "sudo terraform init"
-                sh "sudo terraform apply"
+                sh "sudo terraform apply -auto-approve -no-color"
                 sh """
                 echo "Job successfully "
                 """
