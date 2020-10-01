@@ -48,11 +48,12 @@ pipeline {
         stage('Send to GCS') {
             steps {
                 sh """
-                echo "Sending to bucket '"
+                echo "Sending to bucket 'dataproc-artifactory'"
                 """
                 step([$class: 'ClassicUploadStep', credentialsId: env
                         .CREDENTIALS_ID,  bucket: "gs://${env.BUCKET}",
                       pattern: env.PATTERN])
+                
             }
         }
 
@@ -61,6 +62,8 @@ pipeline {
                 sh """
                 echo "Executing terraform"
                 """
+                sudo terraform init
+                sudo terraform apply
 
                 sh """
                 echo "submitting job in dataproc"

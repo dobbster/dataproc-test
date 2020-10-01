@@ -1,6 +1,11 @@
+provider "google" {
+  project = "broadcom-service-project2"
+  region  = "us-west1"
+  zone    = "us-west1-b"
+}
+
 # Submit an example spark job to a dataproc cluster
 resource "google_dataproc_job" "spark" {
-  project      = "broadcom-service-project2"
   region       = "us-west1"
   force_delete = true
   placement {
