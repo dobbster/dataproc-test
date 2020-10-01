@@ -62,11 +62,10 @@ pipeline {
                 sh """
                 echo "Executing terraform"
                 """
-                sudo terraform init
-                sudo terraform apply
-
+                sh "sudo terraform init"
+                sh "sudo terraform apply"
                 sh """
-                echo "submitting job in dataproc"
+                echo "Job successfully "
                 """
             }
         }
