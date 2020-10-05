@@ -42,6 +42,7 @@ pipeline {
                 executablejarexample/myjar.jar \
                 executablejarexample/*.class
                 """
+                sh "mvn package"
             }
         }
 
