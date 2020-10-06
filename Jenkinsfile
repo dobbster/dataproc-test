@@ -42,7 +42,7 @@ pipeline {
                 executablejarexample/myjar.jar \
                 executablejarexample/*.class
                 """
-                sh "mvn package"
+                sh "cd spark-daria-master && sbt package"
             }
         }
 
