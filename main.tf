@@ -13,9 +13,10 @@ resource "google_dataproc_job" "spark" {
   }
 
   spark_config {
-    main_class    = "org.apache.spark.examples.SparkPi"
-    jar_file_uris = ["file:///usr/lib/spark/examples/jars/spark-examples.jar"]
-    args          = ["1000"]
+    main_jar_file_uri    = "gs://dataproc-artifactory/hello/target/scala-2.12/HelloWorld.jar"
+    //main_class    = "org.apache.spark.examples.SparkPi"
+    //jar_file_uris = ["file:///usr/lib/spark/examples/jars/spark-examples.jar"]
+    //args          = ["1000"]
 
     properties = {
       "spark.logConf" = "true"
